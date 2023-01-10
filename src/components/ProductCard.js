@@ -28,6 +28,9 @@ const ProductCard = ({ product }) => {
           })}
         </ul>
       </div>
+      <div>
+        <p className="text-bold text-blue-700 flex font-bold justify-center">Product Quantity: {product.quantity}</p>
+      </div>
       <div className='flex gap-2 mt-5'>
         {!pathname.includes("cart") && <button onClick={() => dispatch(addToCart(product))} className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
           Add to cart
