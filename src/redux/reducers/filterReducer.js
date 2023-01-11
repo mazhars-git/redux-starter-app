@@ -12,7 +12,13 @@ export const initialState = {
 export const filterReducer = (state = initialState, action) =>{
     switch (action.type) {
         case TOGGLE_BRAND:
-            return {};
+            return {
+                ...state,
+                filters:{
+                    ...state.filters,
+                    brands:[...state.filters.brands, action.payload]
+                }
+            };
         case TOGGLE_STOCK:
             return {};
         default:
