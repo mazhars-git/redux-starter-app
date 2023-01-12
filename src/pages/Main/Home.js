@@ -5,8 +5,9 @@ import { toggleBrand, toggleStock } from './../../redux/actions/filterActions';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const filters = useSelector(state => state.filter);
-  const {brand, stock} = filters; 
+  const filters = useSelector(state => state.filter.filters);
+  const {brands, stock} = filters; 
+  console.log(brands)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,18 +24,18 @@ const Home = () => {
       <div className='mb-10 flex justify-end gap-5'>
           <button
             onClick={() => dispatch(toggleStock())} 
-            className={`border px-3 py-2 rounded-full font-semibold ${activeClass} `}
+            className={`border px-3 py-2 rounded-full font-semibold ${stock ? activeClass : null} `}
           >
             In Stock
           </button>
           <button 
             onClick={() => dispatch(toggleBrand("amd"))} 
-            className={`border px-3 py-2 rounded-full font-semibold`}>
+            className={`border px-3 py-2 rounded-full font-semibold ${brands.includes("amd") ? activeClass : null}`}>
             AMD
           </button>
           <button 
             onClick={() => dispatch(toggleBrand("intel"))} 
-            className={`border px-3 py-2 rounded-full font-semibold`}>
+            className={`border px-3 py-2 rounded-full font-semibold ${brands.includes("intel") ? activeClass : null}`}>
             Intel
           </button>
         </div>
