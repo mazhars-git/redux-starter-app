@@ -7,7 +7,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const filters = useSelector(state => state.filter.filters);
   const {brands, stock} = filters; 
-  console.log(brands, stock)
+  // console.log(brands, stock)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const Home = () => {
     .then((res) => res.json())
     .then((data) => setProducts(data));
   },[])
-  console.log(products);
+  // console.log(products);
   
   const activeClass = "text-white  bg-indigo-500 border-white";
   
