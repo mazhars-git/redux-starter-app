@@ -7,7 +7,7 @@ const Home = () => {
   const [products, setProducts] = useState([]);
   const filters = useSelector(state => state.filter.filters);
   const {brands, stock} = filters; 
-  console.log(brands)
+  console.log(brands, stock)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -15,9 +15,18 @@ const Home = () => {
     .then((res) => res.json())
     .then((data) => setProducts(data));
   },[])
-
+  console.log(products);
   
   const activeClass = "text-white  bg-indigo-500 border-white";
+  
+  let content;
+
+  if(products.length){
+    content = products.map(product => <ProductCard key={product._id} product={product} />)
+  }
+  if(products.length && stock){
+    content = products.filter(product => product.status == true).map(product => <ProductCard key={product._id} product={product} />)
+  }
 
   return (
     <div className='max-w-7xl gap-14 mx-auto my-10'>
@@ -41,7 +50,7 @@ const Home = () => {
         </div>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-14'>
           {
-            products.map(product => <ProductCard key={product._id} product={product} />)
+            content
           }
         </div>
         
