@@ -1,4 +1,8 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from './../actionTypes/actionTypes';
+import { 
+    ADD_TO_CART, 
+    REMOVE_FROM_CART, 
+    LOAD_PRODUCT 
+} from './../actionTypes/actionTypes';
 
 const initialState = {
     cart: [],
@@ -11,6 +15,13 @@ const productReducer = (state = initialState, action) =>{
     console.log(selectedProduct);
 
     switch (action.type) {
+
+        case LOAD_PRODUCT: 
+        return{
+            ...state,
+            products: action.payload,
+        };
+
         case ADD_TO_CART:
             if(selectedProduct){
                 const newCart = state.cart.filter(

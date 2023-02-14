@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from '../../components/ProductCard';
+import loadProductData from "../../redux/thunk/products/fetchProducts";
 import { toggleBrand, toggleStock } from './../../redux/actions/filterActions';
+import { loadProduct } from './../../redux/actions/productActions';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -11,9 +13,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("products.json")
-    .then((res) => res.json())
-    .then((data) => setProducts(data));
+    dispatch(loadProductData());
   },[])
   // console.log(products);
   
